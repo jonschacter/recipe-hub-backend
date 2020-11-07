@@ -6,7 +6,7 @@ Rails.application.routes.draw do
             get "/current_user", to: "sessions#show"
             post "/signup", to: "users#create"
 
-            resources :recipes, only: [:index]
+            resources :recipes, only: [:index, :show]
         end
     end
 end
