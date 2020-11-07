@@ -9,4 +9,21 @@ class Api::V1::RecipesController < ApplicationController
             }
         end
     end
+
+    def show
+        if logged_in?
+            recipe = current_user.recipes.find_by(id: params[:id])
+            if recipe
+                render json: recipe
+            else
+                render :json => {
+                    error: "Recipe could not be found"
+                }
+            end
+        else
+            render :json => {
+                error: "You need to log in to view this"
+            }
+        end
+    end
 end
